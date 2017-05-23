@@ -28,17 +28,22 @@ namespace WebApi_Login.Controllers
             //retornar el resultado.
             return sb.ToString();
         }
-        
+
+        [Route("api/Register/{name}")]
+        public string Get(string name)
+        {
+            return "Hola "+ name;
+        }
+
         // POST api/Register
-        //Ruta de los parametros.
-        [Route("api/Register/{name}/{user}/{password}")]
-        public string Post(string name,string user, string password)
+        [Route("api/Register/{name}/{lastname}/{user}/{password}/{identificationtype}/{numberidentification}/{Mail}")]
+        public string Post(string name,string user, string password,string identificationtype,string numberidentification,string lastname, string mail)
         {
             //usando las entidades
             using (Entities db = new Entities())
             {
                 //se crea una variable donde se almacena el nuevo objeto.
-                var data = new WebApiLogin {Name = name, User = user, Password = CalculateMD5Hash(password)};
+                var data = new WebApiLogin {Name = name, User = user, Password = CalculateMD5Hash(password), IdentificationType = identificationtype,Identification = numberidentification,Last_Name = lastname,Mail = mail};
 
                 //se agrega usando entity frameworks.
                 db.WebApiLogin.Add(data);

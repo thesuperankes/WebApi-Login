@@ -18,5 +18,9 @@ namespace WebApi_Login.Models
         public string Name { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
+        public string IdentificationType { get; set; }
+        public string Identification { get; set; }
+        public string Last_Name { get; set; }
+        public string Mail { get; set; }
     }
 }
