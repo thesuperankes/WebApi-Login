@@ -26,7 +26,6 @@ namespace WebApi_Phone.Models
         }
     
         public virtual DbSet<Personas> Personas { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Telefonos> Telefonos { get; set; }
     }
 }
