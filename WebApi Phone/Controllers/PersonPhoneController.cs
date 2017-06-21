@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,27 +20,16 @@ namespace WebApi_Phone.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<controller>/5
+        // POST api/<controller>
         [Route("api/PersonPhone/{personid}")]
-        public JsonResult<List<Telefonos>> Get(int personid)
+        public IEnumerable<Telefonos> Post(int personid)
         {
-
             using (Entities db = new Entities())
             {
-                //se realiza la consulta y se busca en la base de datos algun registro que coincida con el usuario y contraseña obtenidas
-                var query = (from n in db.Telefonos where n.Id == personid
-                             select n).ToList();
+                var query = (from t in db.Telefonos where t.PersonasId == personid select t).ToList();
 
-
-                //retorna el nombre del registro encontrado.
-                return Json(query);
+                return query;
             }
-
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
         }
 
         // PUT api/<controller>/5
